@@ -8,7 +8,6 @@ import Dashboard from "./pages/Dashboard";
 
 
 function App() {
-  const [count, setCount] = useState(0)
   const router = createBrowserRouter(createRoutesFromElements(<Route path='/' element={<RootLayout />} >
     <Route index element={<Home />} /> {/* home page */}
     <Route path="login" element={<Login />} />
