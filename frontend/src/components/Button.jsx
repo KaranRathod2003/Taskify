@@ -4,7 +4,7 @@ const Button = (props) => {
 
   return (
     <>
-    <button className='py-3 px-6 text-white bg-gray-500 rounded' onClick={props.onClick}>
+    <button className='font-medium w-full rounded-lg text-sm px-5 py-2.5 text-center text-white bg-gray-500' onClick={props.onClick}>
         {props.title}
     </button>
     </>
