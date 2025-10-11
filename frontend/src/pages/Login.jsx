@@ -22,6 +22,12 @@ const Login = () => {
     setPasword("");
   }
 
+const handlelogout = () => {
+  logout();  // context se logout call kar
+};
+
+
+
   
 
 
@@ -63,6 +69,7 @@ const Login = () => {
                   <h1 className="text-sm font-medium cursor-pointer text-blue-600 hover:underline dark:text-primary-500">Forgot password?</h1>
                 </div>
                 <Button title={'Login'} onClick={handleSubmit} />
+                <Button title={'LogOut'} onClick={handlelogout} />
                 {/* <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                   Don’t have an account yet? <a href="#" className="font-medium text-primary-600 hover:underline dark:text-primary-500">Sign up</a>
                 </p> */}

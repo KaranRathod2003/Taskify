@@ -10,6 +10,8 @@ export const AuthProvider = ({children}) =>{
     const[user, setUser] = useState(null);
     const[token,  setToken] = useState(null);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const[isAuthLoading, setIsAuthLoading] = useState(true);
+    
 
     const login = (userData, jwtToken) =>{
         setUser(userData);
@@ -19,6 +21,7 @@ export const AuthProvider = ({children}) =>{
         //
         localStorage.setItem("token", jwtToken);
         localStorage.setItem("user", JSON.stringify(userData));
+        alert("Profile Successfully Logged In");
     }
     const logout = () =>{
         setUser(null);
@@ -35,14 +38,15 @@ export const AuthProvider = ({children}) =>{
       if(savedToken && savedUser){
         setToken(savedToken);
         setUser(JSON.parse(savedUser));
-        setIsLoggedIn(true);
+        setIsLoggedIn(true); // something
       }
+       setIsAuthLoading(false);
     
       
     }, []);
 
     return (
-        <AuthContext.Provider value={{isLoggedIn, user, token, login, logout}}>
+        <AuthContext.Provider value={{isLoggedIn, user, token, login, logout, isAuthLoading}}>
             {children}
         </AuthContext.Provider>
     );

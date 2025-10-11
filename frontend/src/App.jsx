@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
+import ProtectedRotes from './routes/ProtectedRotes';
 
 
 function App() {
@@ -12,7 +13,9 @@ function App() {
     <Route index element={<Home />} /> {/* home page */}
     <Route path="login" element={<Login />} />
     <Route path="register" element={<Register />} />
-    <Route path="dashboard" element={<Dashboard />} />
+    <Route path="dashboard" element={<ProtectedRotes>
+      <Dashboard />
+    </ProtectedRotes>} />
   </Route>))
 
 
