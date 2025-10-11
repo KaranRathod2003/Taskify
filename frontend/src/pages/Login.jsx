@@ -7,28 +7,39 @@ const Login = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPasword] = useState("");
-  const handleSubmit = (e) =>{
+  const [role, setRole] = useState("user"); // default user
+
+// form me
+<div>
+  <label className="block mb-2">Role</label>
+  <select value={role} onChange={(e) => setRole(e.target.value)} className="bg-gray-50 border rounded p-2 w-full">
+    <option value="user">User</option>
+    <option value="admin">Admin</option>
+  </select>
+</div>
+
+  const handleSubmit = (e) => {
     e.preventDefault();
-    if(!email || !password){
+    if (!email || !password) {
       alert("please enter both...")
       return;
     }
-    const dummyUser = {name: name, email:email, password : password};
-    const dummytoken = "abc123";
-    login(dummyUser, dummytoken);
-    console.log("User", dummyUser," ", " Token : ",  dummytoken);
+    const userData = { name, email, password, role };
+    const token = "abc123";
+    login(userData, token);
+    // console.log("User", dummyUser," ", " Token : ",  dummytoken);
     setEmail("");
     setName("");
     setPasword("");
   }
 
-const handlelogout = () => {
-  logout();  // context se logout call kar
-};
+  const handlelogout = () => {
+    logout();  // context se logout call kar
+  };
 
 
 
-  
+
 
 
   return (
@@ -46,16 +57,16 @@ const handlelogout = () => {
               <form className="space-y-4 md:space-y-6" action="#">
                 <div>
                   <label for="text" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your name</label>
-                  <input type="text" name="text" onChange={(e)=>setName(e.target.value)} value={name} id="text" className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name" required="" />
+                  <input type="text" name="text" onChange={(e) => setName(e.target.value)} value={name} id="text" className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name" required="" />
                 </div>
                 <div>
                   <label for="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
-                  <input type="email" name="email" onChange={(e)=>setEmail(e.target.value)} value={email} id="email" className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@company.com" required="" />
+                  <input type="email" name="email" onChange={(e) => setEmail(e.target.value)} value={email} id="email" className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@company.com" required="" />
                 </div>
 
                 <div>
                   <label for="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
-                  <input type="password" name="password" onChange={(e)=>setPasword(e.target.value)} value={password} id="password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="" />
+                  <input type="password" name="password" onChange={(e) => setPasword(e.target.value)} value={password} id="password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="" />
                 </div>
                 <div className="flex items-center justify-between">
                   <div className="flex items-start cursor-pointer">
@@ -67,6 +78,13 @@ const handlelogout = () => {
                     </div>
                   </div>
                   <h1 className="text-sm font-medium cursor-pointer text-blue-600 hover:underline dark:text-primary-500">Forgot password?</h1>
+                </div>
+                <div>
+                  <label className="block mb-2">Role</label>
+                  <select value={role} onChange={(e) => setRole(e.target.value)} className="bg-gray-50 border rounded p-2 w-full">
+                    <option value="user">User</option>
+                    <option value="admin">Admin</option>
+                  </select>
                 </div>
                 <Button title={'Login'} onClick={handleSubmit} />
                 <Button title={'LogOut'} onClick={handlelogout} />

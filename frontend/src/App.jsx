@@ -6,15 +6,26 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 import ProtectedRotes from './routes/ProtectedRotes';
+import AdminDashboard from './pages/AdminDashboard';
+import Unautharized from './pages/Unautharized';
+import RolesRoute from './routes/RolesRoute';
 
 
 function App() {
   const router = createBrowserRouter(createRoutesFromElements(<Route path='/' element={<RootLayout />} >
     <Route index element={<Home />} /> {/* home page */}
     <Route path="login" element={<Login />} />
+    <Route path="/unauthorized" element={<Unautharized />} />
     <Route path="register" element={<Register />} />
+    <Route path="admindashboard" element={
+      <RolesRoute allowedRoles={['admin']}>
+        <AdminDashboard />
+      </RolesRoute>
+    } />
     <Route path="dashboard" element={<ProtectedRotes>
-      <Dashboard />
+      <RolesRoute allowedRoles={['admin', 'user']}>
+        <Dashboard />
+      </RolesRoute>
     </ProtectedRotes>} />
   </Route>))
 
