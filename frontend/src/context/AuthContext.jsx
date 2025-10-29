@@ -1,5 +1,5 @@
 import { createContext, useState, useContext, useEffect } from "react";
-
+import axios from 'axios';
 export const AuthContext = createContext();
 
 export default function useAuth(){
@@ -11,6 +11,14 @@ export const AuthProvider = ({children}) =>{
     const[token,  setToken] = useState(null);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const[isAuthLoading, setIsAuthLoading] = useState(true);
+
+    useEffect(() =>{
+        if(token){
+            axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+        }else{
+            delete axios.defaults.headers.common["Authorization"]
+        }
+    }, [token])
     
 
     const login = (userData, jwtToken) =>{
