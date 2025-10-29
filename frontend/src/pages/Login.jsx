@@ -37,7 +37,7 @@ const Login = () => {
 
       const {user, accessToken} = res.data.data;
       login(user, accessToken);
-      navigate("/dashboard")
+      navigate("/")
     } catch (error) {
       alert(error.response?.data?.message || "Login failed");
     }finally{

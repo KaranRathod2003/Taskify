@@ -22,7 +22,11 @@ const RolesRoute  = ({ children, allowedRoles }) => {
     return children; // allowed -> render karo jo child component hai
   }
 
-  return <Navigate to="/unauthorized" replace />; // not allowed -> unauthorized page
+    if (!user || !allowedRoles) {
+    return <Navigate to="/unauthorized" replace />;
+  }
+  return <Navigate to="/unauthorized" replace />;
+   // not allowed -> unauthorized page
   
 };
 

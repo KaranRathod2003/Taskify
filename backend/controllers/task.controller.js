@@ -20,7 +20,7 @@ const createTask = asyncHandler ( async (req, res) =>{
         assignedTo
     })
     return res.status(201).json(
-        new ApiResponse(200, "Task successfully created", task)
+        new ApiResponse(200, task , "Task successfully created")
     )
 }) 
 
@@ -37,7 +37,7 @@ const getTasks = asyncHandler(async (req, res) =>{
   }
 
   res.status(201).json(
-    new ApiResponse(200, "Task fetched successfully", tasks)
+    new ApiResponse(200,  tasks, "Task fetched successfully")
   )
 }) 
 
@@ -67,7 +67,7 @@ const updateTaskStatus = asyncHandler (async (req, res) =>{
     await task.save();
 
     return res.status(201).json(
-        new ApiResponse(200, "Task status updated successfully", task)
+        new ApiResponse(200, task, "Task status updated successfully" )
     )
 })
 
