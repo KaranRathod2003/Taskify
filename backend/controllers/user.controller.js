@@ -28,7 +28,8 @@ const registerUser = asyncHandler(  async (req, res) =>{
         throw new ApiError(500, "Something went wrong while registration")
     }
     return res.status(201).json(
-        new ApiResponse(200, "User registered successfully", createdUser)
+        new ApiResponse(200, createdUser, "User registered successfully")
+
     )
 
 })
@@ -53,8 +54,9 @@ const loginUser = asyncHandler(async (req, res) =>{
     return res.status(201).json(
         new ApiResponse(
             200,
+            {user : loggedInUser, accessToken},
             "Login Successful",
-            {user : loggedInUser, accessToken}
+            
         )
     )
 
