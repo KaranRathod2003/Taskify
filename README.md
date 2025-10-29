@@ -1,118 +1,183 @@
-## 🧩 **Taskify – Task Management Web App**
 
-### 📝 Overview
 
-**Taskify** is a simple and intuitive task management web application built with **React** and **Context API** for authentication.
-It allows users to log in, manage their tasks efficiently, and stay organized with a clean and modern UI.
+## 🧾 **README.md – Taskify (Role-Based Task Management App)**
 
----
+### 🚀 **Overview**
 
-### 🚀 **Tech Stack**
-
-| Category                         | Technologies                         |
-| -------------------------------- | ------------------------------------ |
-| **Frontend**                     | React.js, TailwindCSS                |
-| **State Management**             | Context API                          |
-| **Routing**                      | React Router DOM                     |
-| **Authentication (Client-side)** | Custom AuthContext with LocalStorage |
-| **Backend (Future Integration)** | Node.js, Express.js, MongoDB         |
+**Taskify** is a full-stack role-based task management application built using the **MERN stack**.
+It allows **Admins** to create, assign, and manage tasks for **Users**, while users can view and update their assigned tasks.
+The project features authentication, authorization, protected routes, and clean role-based UI.
 
 ---
 
-### ⚙️ **Current Features (Completed)**
+### 🧩 **Features**
 
-✅ Basic project setup with React + Vite
-✅ TailwindCSS configuration
-✅ Navbar with navigation links
-✅ AuthContext (Context API for global auth state)
-✅ Login UI built with Tailwind
-✅ Dummy login/logout functionality
-✅ LocalStorage persistence (user stays logged in on refresh)
+#### 👨‍💼 **Admin Features**
 
----
+* Create new tasks and assign them to users.
+* View all created tasks with status tracking.
+* Update or delete any task.
+* View a list of all registered users.
 
-### 🧠 **Upcoming Features (Planned)**
+#### 👤 **User Features**
 
-#### 🧩 Phase 1: Authentication System
+* View all tasks assigned to them.
+* Update their task status (`pending`, `in-progress`, `completed`).
+* View submission and completion dates.
 
-* [ ] Connect frontend login/register to backend API
-* [ ] JWT-based authentication
-* [ ] Role-based access (User/Admin)
-* [ ] Protected routes (Dashboard access only after login)
+#### 🔐 **Authentication & Authorization**
 
-#### ✅ Phase 2: Task Management
+* JWT-based authentication (with tokens stored safely).
+* Role-based protected routes (`admin`, `user`).
+* Automatic redirection based on user role after login.
 
-* [ ] Dashboard UI with task list
-* [ ] Add / Edit / Delete tasks
-* [ ] Mark tasks as completed or pending
-* [ ] Filter tasks by status (All / Completed / Pending)
+#### 🖥️ **Frontend**
 
-#### 📅 Phase 3: User Personalization
+* Built with **React + Vite**
+* Dynamic routing using **React Router DOM v6**
+* Role-based redirection using custom `ProtectedRoutes` and `RolesRoute`
+* Modern UI built with **Tailwind CSS**
 
-* [ ] Show logged-in user’s name & profile in Navbar
-* [ ] Remember last viewed page
-* [ ] Dark/Light mode toggle
+#### ⚙️ **Backend**
 
-#### ☁️ Phase 4: Backend & API Integration
-
-* [ ] Create Express.js + MongoDB backend
-* [ ] REST APIs for user & task management
-* [ ] Secure API calls with JWT
-* [ ] Connect frontend with live backend
+* Node.js with **Express.js**
+* MongoDB with **Mongoose ORM**
+* Modular folder structure (models, controllers, routes, middleware, utils)
+* Custom error handling with `ApiError` & `ApiResponse` classes
+* JWT middleware to verify tokens
 
 ---
 
-### 📂 **Project Structure**
+### 🧱 **Tech Stack**
+
+| Layer           | Technologies Used                           |
+| --------------- | ------------------------------------------- |
+| **Frontend**    | React, Vite, React Router DOM, Tailwind CSS |
+| **Backend**     | Node.js, Express.js                         |
+| **Database**    | MongoDB, Mongoose                           |
+| **Auth**        | JWT (JSON Web Token)                        |
+| **API Testing** | Postman                                     |
+
+---
+
+### 📂 **Folder Structure**
 
 ```
 Taskify/
 │
-├── src/
-│   ├── components/
-│   │   ├── Button.jsx
-│   │   └── Navbar.jsx
-│   │
-│   ├── context/
-│   │   └── AuthContext.jsx
-│   │
-│   ├── pages/
-│   │   ├── Login.jsx
-│   │   ├── Register.jsx (planned)
-│   │   └── Dashboard.jsx (planned)
-│   │
-│   ├── App.jsx
-│   └── main.jsx
+├── backend/
+│   ├── controllers/
+│   │   ├── user.controller.js
+│   │   ├── task.controller.js
+│   ├── models/
+│   │   ├── user.models.js
+│   │   ├── task.models.js
+│   ├── middleware/
+│   │   ├── auth.middleware.js
+│   ├── routes/
+│   │   ├── user.routes.js
+│   │   ├── task.routes.js
+│   ├── utils/
+│   │   ├── ApiError.js
+│   │   ├── ApiResponse.js
+│   │   ├── asyncHandler.js
+│   ├── server.js
 │
-├── public/
+├── frontend/
+│   ├── src/
+│   │   ├── context/
+│   │   │   ├── AuthContext.jsx
+│   │   ├── layout/
+│   │   │   ├── RootLayout.jsx
+│   │   ├── pages/
+│   │   │   ├── Home.jsx
+│   │   │   ├── Login.jsx
+│   │   │   ├── Register.jsx
+│   │   │   ├── Dashboard.jsx
+│   │   │   ├── AdminDashboard.jsx
+│   │   │   ├── Unauthorized.jsx
+│   │   ├── routes/
+│   │   │   ├── ProtectedRoutes.jsx
+│   │   │   ├── RolesRoute.jsx
+│   │   ├── App.jsx
+│   │   ├── main.jsx
 │
-├── package.json
 └── README.md
 ```
 
 ---
 
-### 🔑 **Flow of Operations**
+### 🕒 **Development Timeline**
 
-1. User opens the app → Navbar visible
-2. Clicks on **Login** → fills credentials
-3. `handleSubmit()` in `Login.jsx` triggers `login()` from `AuthContext`
-4. `AuthContext` stores `user` and `token` in both **state** and **localStorage**
-5. On reload, data is restored using `useEffect()`
-6. Clicking **Logout** → clears all data from state + localStorage
-
----
-
-### 💡 **Future Enhancements**
-
-* Add task due dates and reminders
-* Integrate email notifications
-* Add animations (Framer Motion)
-* Deploy on **Vercel** or **Netlify**
+| Day       | Task                                                          | Progress |
+| --------- | ------------------------------------------------------------- | -------- |
+| **Day 1** | Setup backend structure (server, routes, models, controllers) | ✅        |
+| **Day 2** | Added JWT authentication & user role system                   | ✅        |
+| **Day 3** | Built Task APIs (CRUD + status updates)                       | ✅        |
+| **Day 4** | Created React frontend structure with routing                 | ✅        |
+| **Day 5** | Added AuthContext, Login, Register, ProtectedRoutes           | ✅        |
+| **Day 6** | Integrated backend APIs with frontend                         | ✅        |
+| **Day 7** | Fixed role-based navigation & polished UI                     | ✅        |
+| **Day 8** | Completed final testing and debugging                         | ✅        |
 
 ---
 
-### 👨‍💻 **Author**
+### ⚡ **Setup Instructions**
 
-**Karan [Propane]**
-Software Developer | Full Stack Enthusiast 💻
+#### 🧠 Prerequisites
+
+* Node.js (v16+)
+* MongoDB installed or MongoDB Atlas URI
+
+#### 🪄 Clone the repository
+
+```bash
+git clone https://github.com/yourusername/taskify.git
+cd taskify
+```
+
+#### 🧩 Setup Backend
+
+```bash
+cd backend
+npm install
+# Add .env file with:
+# MONGO_URI=your_mongo_connection_string
+# JWT_SECRET=your_secret_key
+npm run start
+```
+
+#### 💻 Setup Frontend
+
+```bash
+cd frontend
+npm install
+npm run start
+```
+
+#### 🌐 Access App
+
+```
+Frontend: http://localhost:5173
+Backend: http://localhost:5000
+```
+
+---
+
+### 🔮 **Future Improvements**
+
+* Add email notifications for assigned/completed tasks
+* Add task priority & filtering options
+* Admin analytics dashboard
+* Dark mode toggle
+
+---
+
+### 👨‍💻 **Developer**
+
+**Propane Legends**
+💼 Full Stack Developer | MERN | JAVA | AI Integration
+📧 [[kr04391@gmail.com]]
+🌐 [https://karan-rathod-space.netlify.app/ / https://github.com/KaranRathod2003]
+
 
