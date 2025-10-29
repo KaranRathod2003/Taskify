@@ -6,7 +6,7 @@ const ProtectedRotes = ({children}) => {
   const {isAuthLoading, isLoggedIn} = useAuth();
   const location = useLocation();
   if(isAuthLoading){
-    return <div >Loading...</div>
+    return <div className="text-center mt-10 text-lg">Checking authentication...</div>;
   }
   if(!isLoggedIn){
     return <Navigate to={'/login'} state={{from: location}} replace />

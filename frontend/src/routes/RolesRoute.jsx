@@ -7,7 +7,7 @@ const RolesRoute  = ({ children, allowedRoles }) => {
 
   // Loading state handle karo (optional)
   if (isAuthLoading) {
-    return <div>Loading...</div>;
+    return <div className="text-center mt-10 text-lg">Checking role...</div>;
   }
 
   // User logged in nahi hai -> login page redirect
@@ -16,11 +16,12 @@ const RolesRoute  = ({ children, allowedRoles }) => {
   }
 
   // Role check karo
-  if (user && allowedRoles.includes(user.role)) {
+  if (user?.role && allowedRoles.includes(user.role)) {
     return children; // allowed -> render karo jo child component hai
-  } else {
-    return <Navigate to="/unauthorized" replace />; // not allowed -> unauthorized page
   }
+
+  return <Navigate to="/unauthorized" replace />; // not allowed -> unauthorized page
+  
 };
 
 export default RolesRoute
