@@ -18,12 +18,15 @@ function App() {
     <Route path="/unauthorized" element={<Unautharized />} />
     <Route path="register" element={<Register />} />
     <Route path="admindashboard" element={
-      <RolesRoute allowedRoles={['admin']}>
+      <ProtectedRotes>
+        <RolesRoute allowedRoles={['admin']}>
         <AdminDashboard />
       </RolesRoute>
+      </ProtectedRotes>
+      
     } />
     <Route path="dashboard" element={<ProtectedRotes>
-      <RolesRoute allowedRoles={['admin', 'user']}>
+      <RolesRoute allowedRoles={['user']}>
         <Dashboard />
       </RolesRoute>
     </ProtectedRotes>} />

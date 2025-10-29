@@ -25,7 +25,7 @@ export const AuthProvider = ({children}) =>{
         setUser(userData);
         setToken(jwtToken);
         setIsLoggedIn(true);
-
+        axios.defaults.headers.common["Authorization"] = `Bearer ${jwtToken}`;
         //
         localStorage.setItem("token", jwtToken);
         localStorage.setItem("user", JSON.stringify(userData));
@@ -36,6 +36,7 @@ export const AuthProvider = ({children}) =>{
         setToken(null);
         setIsLoggedIn(false);
         //
+        delete axios.defaults.headers.common["Authorization"];
         localStorage.removeItem("token");
         localStorage.removeItem("user");
 

@@ -16,7 +16,9 @@ const RolesRoute  = ({ children, allowedRoles }) => {
   }
 
   // Role check karo
-  if (user?.role && allowedRoles.includes(user.role)) {
+  const userRole = user?.role?.toLowerCase();
+
+  if (allowedRoles.map(r => r.toLowerCase()).includes(userRole)) {
     return children; // allowed -> render karo jo child component hai
   }
 

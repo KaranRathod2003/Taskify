@@ -19,8 +19,7 @@ const Navbar = () => {
           {
             isLoggedIn && (
                 <>
-                <li><Link to="/dashboard">User Dashboard</Link></li>
-                {user?.role === "admin" && (<li><Link to="/admindashboard">Admin Dashboard</Link></li>)}
+                {user?.role === "admin" ? <li><Link to="/admindashboard">Admin Dashboard</Link></li> : <li><Link to="/dashboard">User Dashboard</Link></li>}
                 <Button title={'LogOut'} onClick={handlelogout} />
                 </>
             )
