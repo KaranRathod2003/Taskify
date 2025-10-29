@@ -20,5 +20,8 @@ import userRouter from './routes/user.routes.js'
 app.use("/api/v1/users", userRouter);
 
 
+import taskRouter from './routes/task.routes.js'
+app.use("/api/v1/tasks", taskRouter)
+
 
 export {app}
