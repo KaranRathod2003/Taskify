@@ -10,12 +10,22 @@ dotenv.config(
 const PORT = process.env.PORT || 5000
 connectDB()
 .then(()=>{
-    app.listen(PORT, ()=>{
-        console.log(` 🚀  SERVER IS RUNNING... ON: ${PORT || 5000}`)
-    })
+    // app.listen(PORT, ()=>{
+    //     console.log(` 🚀  SERVER IS RUNNING... ON: ${PORT || 5000}`)
+    // })
+    console.log('✅ MongoDB Connected');
 })
 .catch((err)=>{
     console.log("❌ MONGODB Connection Failed", err);
 })
+
+// temporary check
+app.get('/', (req, res) => {
+  res.json({ 
+    message: '✅ Backend is running!',
+    status: 'OK' 
+  });
+});
+
 
 export default app;

@@ -27,4 +27,4 @@ import taskRouter from './routes/task.routes.js'
 app.use("/api/v1/tasks", taskRouter)
 
 
-export {app}
+export { app }
