@@ -18,3 +18,4 @@ connectDB()
     console.log("❌ MONGODB Connection Failed", err);
 })
 
+export default app;

@@ -1,11 +1,17 @@
 import { createContext, useState, useContext, useEffect } from "react";
 import axios from 'axios';
+
+//PART 1
 export const AuthContext = createContext();
 
+
+//PART 2
 export default function useAuth(){
     return useContext(AuthContext);
 }
 
+
+//PART 3
 export const AuthProvider = ({children}) =>{
     const[user, setUser] = useState(null);
     const[token,  setToken] = useState(null);
