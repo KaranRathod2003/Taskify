@@ -8,12 +8,15 @@ dotenv.config();
 const app = express();
 //middleware
 app.use(cors({
-    origin: process.env.CORS_ORIGIN,
-    credentials : true
+    origin: [process.env.CORS_ORIGIN, 
+        'https://taskify-backend-three.vercel.app', // Your backend
+        'https://taskify-frontend-tan.vercel.app',
+        '*'],
+    credentials: true
 }))
 app.use(cookieParser())
-app.use(express.json({limit : "20kb"}))
-app.use(express.urlencoded({extended : true, limit: "16kb"}))
+app.use(express.json({ limit: "20kb" }))
+app.use(express.urlencoded({ extended: true, limit: "16kb" }))
 app.use(express.static("public"));
 
 
